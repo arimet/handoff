@@ -1,0 +1,55 @@
+{
+  "skill_name": "handoff",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "You just finished implementing a small feature for me — about 40 lines across one file. Now quiz me to check I actually understood it.",
+      "expected_output": "Skill triggers. Asks ~3 questions, one at a time, mixing a 'where' multiple-choice question with at least one 'why' open question. Ends with a score and weak areas.",
+      "files": [],
+      "assertions": [
+        "Asks questions one at a time rather than all at once",
+        "Total question count is around 3 for this small change",
+        "Ends with a numeric score (e.g. N/3) and lists weak areas with file pointers"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We just shipped a big refactor touching 7 files and ~400 lines. Run a handoff comprehension check.",
+      "expected_output": "Skill triggers. Asks 8-10 questions scaled to the large change, anchored on real file:line locations from the diff.",
+      "files": [],
+      "assertions": [
+        "Question count scales up to 8-10 for the large change",
+        "Uses git diff to anchor questions on real file:line locations"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Vérifie que j'ai bien compris le code que tu viens d'écrire.",
+      "expected_output": "Skill triggers and conducts the entire quiz in French (matching the developer's language).",
+      "files": [],
+      "assertions": [
+        "Skill triggers on the French phrasing",
+        "Quiz is conducted in French"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "I gave a wrong answer to your question. What do you do next?",
+      "expected_output": "Skill points to the relevant file:line as a hint without revealing the answer, invites a second attempt, and only reveals the answer + explanation if the retry is also wrong.",
+      "files": [],
+      "assertions": [
+        "Points to file:line as a hint without revealing the answer on the first miss",
+        "Allows exactly one retry before revealing the answer"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "What does the `reduce` function do in JavaScript?",
+      "expected_output": "Skill does NOT trigger — this is a generic code question, not a request to verify understanding of work Claude just did.",
+      "files": [],
+      "assertions": [
+        "handoff skill does not trigger on a generic programming question"
+      ]
+    }
+  ]
+}
