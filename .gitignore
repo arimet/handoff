@@ -1,0 +1,9 @@
+# Build artifacts
+*.skill
+
+# OS / editor cruft
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
