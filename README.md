@@ -1,3 +1,5 @@
+
+
 <div align="center">
 
 # 🤝 handoff
@@ -103,7 +105,13 @@ After Claude finishes a feature, trigger it manually:
 
 An optional, **non-blocking** `Stop` hook nudges you to run `/handoff` when a
 session produced a large diff. It only prints a suggestion — it never forces the
-quiz and never blocks Claude. Register it in `~/.claude/settings.json`:
+quiz and never blocks Claude. First, ensure the script is executable:
+
+```bash
+chmod +x ~/.claude/skills/handoff/scripts/suggest-quiz.sh
+```
+
+Then register it in `~/.claude/settings.json`:
 
 ```json
 {
