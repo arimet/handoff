@@ -29,6 +29,7 @@ shouldn't merge what you can't explain.
 - [Demo](#demo)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Interactive mode](#interactive-mode)
 - [Auto-suggestion hook](#auto-suggestion-hook)
 - [Configuration](#configuration)
 - [Requirements](#requirements)
@@ -53,6 +54,9 @@ change — its location, its rationale, and its behavior.
   8–10 for a large feature.
 - 🔀 **Mixed question types** — multiple-choice for "where / what behavior",
   open-ended for "why".
+- 🖱️ **Interactive mode** — multiple-choice questions are *clickable*: you pick
+  an answer with the mouse instead of typing, and can still type a free-form
+  answer via "Other". Falls back to plain text on demand.
 - 1️⃣ **One question at a time** — you answer, it evaluates, then continues.
 - 🎯 **Wrong-answer flow** — points you to the `file:line` *without* revealing
   the answer, lets you retry once, then reveals it with a short explanation.
@@ -98,6 +102,45 @@ After Claude finishes a feature, trigger it manually:
 
 …or just ask in natural language: *"quiz me on what you built"*,
 *"vérifie que j'ai compris"*, *"test my understanding"*, *"comprehension check"*.
+
+Multiple-choice questions are clickable by default — see
+[Interactive mode](#interactive-mode).
+
+## Interactive mode
+
+Multiple-choice questions ("where does this live?", "what happens if X?") are
+asked through Claude Code's `AskUserQuestion` tool, so you answer them by
+**clicking an option** rather than typing:
+
+```text
+┌ Where? ──────────────────────────────────────────────────┐
+│ Which file counts the untracked files Claude created?    │
+│                                                          │
+│   1. suggest-quiz.sh    scripts/ — the Stop hook         │
+│   2. SKILL.md           the quiz procedure itself        │
+│   3. install.md         references/ — setup + thresholds │
+│   4. Other              (type your own answer)           │
+└──────────────────────────────────────────────────────────┘
+```
+
+- One question per prompt — the one-at-a-time flow is unchanged.
+- Every question keeps an **"Other"** escape, so you can always type instead of
+  clicking.
+- A wrong click re-asks the same question with a `file:line` hint and the same
+  options — nothing is eliminated, so you get a real second attempt.
+- Open-ended **"why"** questions stay typed on purpose: explaining a trade-off
+  in your own words is the point, and a list of rationales would turn recall
+  into recognition.
+
+| Command                 | Effect                                              |
+| ----------------------- | --------------------------------------------------- |
+| `/handoff`              | Clickable answers when the environment supports them |
+| `/handoff --interactive`| Force clickable answers                              |
+| `/handoff --text`       | Plain-text quiz, answered with the keyboard          |
+
+Natural language works too: *"quiz me with clickable answers"*, *"mode
+interactif"*, *"pas de clic, en texte"*. Scoring, retries and weak-area
+reporting are identical in both modes — only the input method changes.
 
 ## Auto-suggestion hook
 
