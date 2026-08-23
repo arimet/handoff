@@ -17,7 +17,7 @@ Once installed, invoke it manually any time with `/handoff`, or just ask Claude
 to "quiz me on what you built" / "vérifie que j'ai compris".
 
 Multiple-choice questions are **clickable by default**: they are asked through
-Claude Code's `AskUserQuestion` prompt, so you answer with the mouse and can
+Claude Code's `AskUserQuestion` tool, so you answer with the mouse and can
 still type a free-form answer via "Other". Use `/handoff --text` for a
 keyboard-only quiz, or `/handoff --interactive` to force the clickable mode.
 

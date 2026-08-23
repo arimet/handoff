@@ -11,9 +11,10 @@ description: >-
   on WHERE the logic lives (file/function) and WHY decisions were made
   (trade-offs, behavior, debugging), with the number of questions scaled to the
   size of the change. Multiple-choice questions are clickable by default (asked
-  through AskUserQuestion) and fall back to typed answers. Points to file:line on
-  wrong answers, allows one retry, then reveals the answer, and ends with a score
-  plus the weak areas to re-read. Conducts the quiz in the developer's language.
+  through `AskUserQuestion`) and fall back to typed answers. Points to file:line
+  on wrong answers, allows one retry, then reveals the answer, and ends with a
+  score plus the weak areas to re-read. Conducts the quiz in the developer's
+  language.
 ---
 
 # Handoff — verify you understood Claude's code
