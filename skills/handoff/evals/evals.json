@@ -50,6 +50,39 @@
       "assertions": [
         "handoff skill does not trigger on a generic programming question"
       ]
+    },
+    {
+      "id": 6,
+      "prompt": "Quiz me on the feature you just built — I'd rather click the answers than type them.",
+      "expected_output": "Skill triggers in interactive mode: each multiple-choice question is asked through the AskUserQuestion tool, one call per question, with 2-4 clickable options.",
+      "files": [],
+      "assertions": [
+        "Uses the AskUserQuestion tool for multiple-choice questions",
+        "Issues one AskUserQuestion call per question rather than batching the whole quiz",
+        "Each question offers between 2 and 4 options"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "/handoff --text",
+      "expected_output": "Skill runs the quiz as plain text with numbered options answered from the keyboard, without using the AskUserQuestion tool.",
+      "files": [],
+      "assertions": [
+        "Does not use the AskUserQuestion tool",
+        "Presents options as plain text the developer answers by typing",
+        "Scoring and retry flow are unchanged from interactive mode"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "I clicked the wrong option on your multiple-choice question. What happens now?",
+      "expected_output": "Skill re-asks the same question through AskUserQuestion with a file:line hint in the question text, keeping all original options (including the one just picked), and only reveals the answer if the retry is also wrong.",
+      "files": [],
+      "assertions": [
+        "Re-asks the same question with the file:line hint in the question text",
+        "Keeps every original option on the retry instead of eliminating the wrong pick",
+        "Reveals the answer with a short explanation only after the second attempt"
+      ]
     }
   ]
 }

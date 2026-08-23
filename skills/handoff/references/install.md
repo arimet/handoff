@@ -16,6 +16,11 @@ cp -r skills/handoff ~/.claude/skills/handoff
 Once installed, invoke it manually any time with `/handoff`, or just ask Claude
 to "quiz me on what you built" / "vérifie que j'ai compris".
 
+Multiple-choice questions are **clickable by default**: they are asked through
+Claude Code's `AskUserQuestion` tool, so you answer with the mouse and can
+still type a free-form answer via "Other". Use `/handoff --text` for a
+keyboard-only quiz, or `/handoff --interactive` to force the clickable mode.
+
 ## 2. (Optional) Enable the auto-suggestion Stop hook
 
 The hook nudges you to run `/handoff` when a session produced a large diff. It
